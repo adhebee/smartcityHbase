@@ -1,38 +1,31 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2867
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+# HBase Table Schema
 
-\f0\fs24 \cf0 # HBase Table Schema\
-\
-## Table Name\
-\
-sensor_data\
-\
-## Column Family\
-\
-metrics\
-\
-## Column Structure\
-\
-metrics:temperature  \
-metrics:humidity  \
-metrics:aqi  \
-metrics:co2  \
-metrics:city  \
-metrics:zone  \
-metrics:timestamp\
-\
-## Example Record\
-\
-Row Key:\
-\
-S101_202603041230\
-\
-Stored Values:\
-\
-metrics:temperature = 32  \
-metrics:humidity = 65  \
-metrics:aqi = 120}
+## Table Name
+
+sensor_data
+
+## Column Family
+
+metrics
+
+## Column Structure
+
+metrics:temperature  
+metrics:humidity  
+metrics:aqi  
+metrics:co2  
+metrics:city  
+metrics:zone  
+metrics:timestamp
+
+## Example Record
+
+Row Key:
+
+S101_202603041230
+
+Stored Values:
+
+metrics:temperature = 32  
+metrics:humidity = 65  
+metrics:aqi = 120
