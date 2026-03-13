@@ -1,0 +1,60 @@
+# Smart City Sensor Simulator
+
+A state-of-the-art distributed system simulator designed to generate and transmit real-time telemetry data from various smart city sensors. This project enables testing and development of large-scale urban data processing pipelines.
+
+## 🏗️ Architecture
+
+The simulator follows a modular, abstract-base-class architecture that allows for highly extensible sensor implementations.
+
+```mermaid
+graph TD
+    subgraph "Smart City Simulator Layer"
+        Config[config.json] --> Sim[simulator.py]
+        Sim --> ES[Environment Sensor]
+        Sim --> TS[Traffic Sensor]
+        Sim --> WS[Waste Sensor]
+    end
+
+    subgraph "Data Pipeline & Backend"
+        ES -- JSON/HTTP --> API[Inbound API /insert]
+        TS -- JSON/HTTP --> API
+        WS -- JSON/HTTP --> API
+        API --> HBase[(HBase Backend)]
+        HBase --> Analytics[Real-time Analytics]
+    end
+```
+
+## 🛠️ Tech Stack
+
+- **Core Logic**: Python 3.x
+- **Data Format**: JSON (ISO 8601 Timestamps)
+- **Communication**: REST API (HTTP POST)
+- **Design Pattern**: Abstract Base Classes (ABC) for modularity
+- **Libraries**: `requests` for networking, `random` for telemetry simulation
+
+## 🚀 Working Principle
+
+1. **Initialization**: The `BaseSensor` abstract class defines the blueprint for all sensors, handling common configuration (Backend URL, City, Zones).
+2. **Simulation**: Specific subclasses (`EnvironmentSensor`, `TrafficSensor`, `WasteSensor`) override the `generate_data()` method to produce type-specific telemetry.
+3. **Data Transmission**: The simulator iterates through all active sensors, calling their `send_data()` method which performs an HTTP POST request to the configured backend.
+4. **Configuration**: All operational parameters, including polling intervals and sensor IDs, are managed via `config.json`.
+
+## 📋 Prerequisites
+
+- **Python**: Version 3.8 or higher.
+- **Dependencies**: Install via pip:
+  ```bash
+  pip install -r requirements.txt
+  ```
+- **Backend Connectivity**: Ensure the destination API endpoint specified in `config.json` is reachable.
+
+## 📂 Project Structure
+
+- `simulator.py`: The engine that drives the sensor simulation.
+- `config.json`: The central configuration hub.
+- `test_sensors.py`: Automated test suite for validating data schemas.
+- `DEVELOPMENT.md`: Detailed guide for extending the simulator.
+- `sam.txt`: Sample logs and transmission examples.
+
+---
+*Synchronizing urban intelligence through distributed simulation.*
